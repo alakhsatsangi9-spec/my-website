@@ -1,3 +1,8 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
            background-color: lightblue;
  } 
@@ -22,21 +27,29 @@ box-shadow: 0px 10px 25px grey;
 img:hover {
     transform: scale(1.05);
 }
-nav{
-background-clolor: darkblue;
-padding: 15px;
+nav {
+background-color: teal;
+padding: 10px;
 text-align: center;
+position: sticky;
+top: 0;
+z-index: 1000;
 }
-
 nav a {
 color: white;
 text-decoration: none;
-margin: 20px;
+margin: 0 20px;
 font-size: 18px;
+font-family: arial, sans-serif;
+transition: 0.3s;
 }
 nav a:hover {
-color: yellow;
+color: red;
 }
+
+
+
+
 #home {
 text-align: center;
 padding: 80px 20px;
@@ -52,4 +65,94 @@ padding: 80px 20px;
 #contact {
 text-align: center;
 padding: 80px 20px;
+}
+
+video {
+    video-align: center;
+    width: 1000px;
+    display: block;
+    margin: 30px auto;
+    border-radius: 15px;
+}
+nav {
+    animation: slideDown 1s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+nav a {
+    display: inline-block;
+    transition: 0.3s;
+}
+.hero {
+text-align: center;
+padding: 80px 20px;
+min-height: 600px;
+box-sizing: border-box;
+}
+.hero p {
+font-size: 24px;
+margin-bottom: 30px;
+animation: fadeIn 2s ease;
+}
+.hero button {
+background-color: #111827;
+color: white;
+border: none;
+padding: 15px 30px;
+font-size: 18px;
+border-radius: 30px;
+cursor: pointer;
+transition: 0.3s;
+}
+.hero img {
+width: 400px;
+max-width: 90%;
+display: block;
+margin: 40px auto;
+border-radius: 25px;
+box-shadow: 0px 10px 25px grey;
+}
+@keyframes fadeIn {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.hero h1 {
+    font-size: 55px;
+    margin-bottom: 15px;
+    animation: fadeIn 1.5s ease;
+}
+.hero button:hover {
+    transform: scale(1.1);
+    background-color: #2563eb;
+}
+.explore-btn {
+    display: inline-block;
+    background-color: #111827;
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.explore-btn:hover {
+    transform: scale(1.1);
+    background-color: #2563eb;
 }
