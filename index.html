@@ -1,85 +1,1197 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="hi">
 
 <head>
-    <title>My Website</title>
-<link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Website | Study • Science • Technology</title>
+
+    <meta name="description"
+          content="A modern study and creative website for science, education and NEET preparation.">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
 </head>
 
+
 <body>
-<nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#science">Science</a>
-<a href="#contact">Contact</a>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <div class="logo">
+            <span>🌱</span>
+            <strong>My Website</strong>
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#about">About</a>
+
+            <a href="#study">Study</a>
+
+            <a href="#shayari">Shayari</a>
+
+            <a href="#story">Story</a>
+
+            <a href="#contact">Contact</a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <button id="theme-btn"
+                    class="icon-btn"
+                    title="Dark / Light Mode">
+
+                🌙
+
+            </button>
+
+
+            <button id="focus-btn"
+                    class="icon-btn"
+                    title="Focus Mode">
+
+                🎯
+
+            </button>
+
+
+            <button class="menu-btn"
+                    onclick="toggleMenu()">
+
+                ☰
+
+            </button>
+
+        </div>
+
+    </div>
+
 </nav>
 
-<section id="home"  class="hero">
 
-    <h1>Welcome to My Website🌱</h1>
 
-    <p>This is my first website. </p>
-<P> 
-Science • Nature • Technology 
-</P>
-<a href="#science" class="explore-btn">Explore 🔬</a>
-<img src="alakh.jpg.jpg" alt="My Photo">
+<!-- HOME -->
+
+<section id="home" class="hero">
+
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+
+            ✨ Welcome to my digital world
+
+        </div>
+
+
+        <h1>
+            Welcome to My Website 🌱
+        </h1>
+
+
+        <p class="hero-main-text">
+
+            This is my first website.
+
+        </p>
+
+
+        <p class="hero-sub-text">
+
+            Science
+            <span>•</span>
+            Nature
+            <span>•</span>
+            Technology
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a href="#study"
+               class="explore-btn">
+
+                Explore <span>→</span>
+
+            </a>
+
+
+            <a href="#about"
+               class="secondary-btn">
+
+                Discover More
+
+            </a>
+
+        </div>
+
+
+        <div class="hero-image-wrapper">
+
+            <div class="image-glow"></div>
+
+            <img src="alakh.jpg.jpg"
+                 alt="My Photo">
+
+        </div>
+
+    </div>
 
 </section>
 
 
 
-<p>shayari </p>
-<p>तुम मेरी याद में सुलगो तो बुरा लगता है,</p>
+<!-- DASHBOARD -->
 
-<p>तुम मेरे दीदार को तरसो तो बुरा लगता है,</p>
+<section class="dashboard-section">
 
-<p>एक तमन्ना है फकत मुझ पे मेहरबान रहो,</p>
+    <div class="dashboard">
 
-<p>तुम किसी और को देखो तो बुरा लगता है,</p>
+        <div class="dashboard-card">
 
-<p>मेरी रूह तरसती है तुम्हारी खुशबू को,</p>
+            <span>📚</span>
 
-<p>तुम कहीं और जो महको तो बुरा लगता है।</p>
+            <div>
 
-<section id="about">
-<h2>about me</h2>
-<p>
-hello! I am learning web development.
-I love science , art , nature and techonology.
- </p>
+                <small>STUDY MATERIAL</small>
+
+                <strong>NEET</strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <span>🧬</span>
+
+            <div>
+
+                <small>SUBJECT</small>
+
+                <strong>Biology</strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <span>📖</span>
+
+            <div>
+
+                <small>CLASS</small>
+
+                <strong>11</strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <span>🎯</span>
+
+            <div>
+
+                <small>FOCUS</small>
+
+                <strong>Study Mode</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
-<section id="science">
-<h2>science</h2>
-<p>
-science helps us to understand the world around us . 
-</p>
+
+
+
+<!-- STUDY -->
+
+<section id="study"
+         class="section study-section">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            LEARNING HUB
+        </span>
+
+        <h2>
+            Study 📚
+        </h2>
+
+        <div class="heading-line"></div>
+
+        <p>
+            Study material and useful resources.
+        </p>
+
+    </div>
+
+
+    <div class="study-card">
+
+        <div class="card-top">
+
+            <div class="card-icon">
+                🩺
+            </div>
+
+            <span class="card-status">
+                STUDY
+            </span>
+
+        </div>
+
+
+        <h3>
+            NEET
+        </h3>
+
+
+        <p>
+            NEET preparation material and practice PDFs.
+        </p>
+
+
+        <a href="#neet"
+           class="card-btn">
+
+            Open NEET
+            <span>→</span>
+
+        </a>
+
+    </div>
+
 </section>
-<h2>My Video 🎬</h2>
-
-<iframe
-    width="600"
-    height="350"
-    src="https://www.youtube.com/embed/R-d8yq0sREk"
-title="YouTube video"
-
-frameborder="0"
-    
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    
-    allowfullscreen>
-</iframe>
 
 
 
-<section id="contact">
-<h2>contact</h2>
-<p>you can contact me here.</p>
+<!-- NEET -->
+
+<section id="neet"
+         class="section neet-section">
+
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            NEET PREPARATION
+        </span>
+
+
+        <h2>
+            NEET Preparation 🩺
+        </h2>
+
+
+        <div class="heading-line"></div>
+
+    </div>
+
+
+
+    <!-- SEARCH BAR -->
+
+    <div class="search-box neet-search">
+
+        <span>
+            🔎
+        </span>
+
+
+        <input
+            type="text"
+            id="chapter-search"
+            placeholder="Search Biology chapters..."
+            autocomplete="off">
+
+
+        <button id="clear-search">
+            ✕
+        </button>
+
+    </div>
+
+
+
+    <div class="neet-container">
+
+
+        <div class="neet-header">
+
+            <div>
+
+                <span class="small-label">
+                    STUDY MATERIAL
+                </span>
+
+
+                <h3>
+                    📚 NEET Study Material
+                </h3>
+
+            </div>
+
+
+            <div class="neet-symbol">
+                🧬
+            </div>
+
+        </div>
+
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-area">
+
+            <div class="progress-top">
+
+                <span>
+                    Biology Progress
+                </span>
+
+
+                <strong id="progress-text">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div id="progress-fill"
+                     class="progress-fill">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BIOLOGY -->
+
+        <div class="subject">
+
+            <div class="subject-title">
+
+                <span class="subject-icon">
+                    🧬
+                </span>
+
+
+                <div>
+
+                    <h3>
+                        Biology
+                    </h3>
+
+                    <p>
+                        Class 11
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CLASS 11 -->
+
+            <div class="class-box">
+
+                <div class="class-heading">
+
+                    <span>
+                        📖
+                    </span>
+
+                    <strong>
+                        Class 11
+                    </strong>
+
+                </div>
+
+
+
+                <!-- CHAPTER 1 -->
+
+                <div class="chapter"
+                     data-name="The Living World Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            01
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                The Living World
+                            </h4>
+
+                            <p>
+                                Chapter 1
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chapter-actions">
+
+                        <button
+                            class="favorite-btn"
+                            onclick="toggleFavorite(this)"
+                            title="Bookmark">
+
+                            ☆
+
+                        </button>
+
+
+                        <button
+                            class="complete-btn"
+                            onclick="completeChapter(this)"
+                            title="Mark Complete">
+
+                            ✓
+
+                        </button>
+
+
+                        <a href="111NOTES.pdf"
+                           download
+                           class="download-btn">
+
+                            📥 Download
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAPTER 2 -->
+
+                <div class="chapter"
+                     data-name="Biological Classification Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            02
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Biological Classification
+                            </h4>
+
+                            <p>
+                                Chapter 2
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAPTER 3 -->
+
+                <div class="chapter"
+                     data-name="Plant Kingdom Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            03
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Plant Kingdom
+                            </h4>
+
+                            <p>
+                                Chapter 3
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAPTER 4 -->
+
+                <div class="chapter"
+                     data-name="Animal Kingdom Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            04
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Animal Kingdom
+                            </h4>
+
+                            <p>
+                                Chapter 4
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAPTER 5 -->
+
+                <div class="chapter"
+                     data-name="Morphology of Flowering Plants Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            05
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Morphology of Flowering Plants
+                            </h4>
+
+                            <p>
+                                Chapter 5
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAPTER 6 -->
+
+                <div class="chapter"
+                     data-name="Anatomy of Flowering Plants Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            06
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Anatomy of Flowering Plants
+                            </h4>
+
+                            <p>
+                                Chapter 6
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAPTER 7 -->
+
+                <div class="chapter"
+                     data-name="Structural Organisation in Animals Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            07
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Structural Organisation in Animals
+                            </h4>
+
+                            <p>
+                                Chapter 7
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAPTER 8 -->
+
+                <div class="chapter"
+                     data-name="Cell The Unit of Life Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            08
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Cell: The Unit of Life
+                            </h4>
+
+                            <p>
+                                Chapter 8
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAPTER 9 -->
+
+                <div class="chapter"
+                     data-name="Biomolecules Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            09
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Biomolecules
+                            </h4>
+
+                            <p>
+                                Chapter 9
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CHAPTER 10 -->
+
+                <div class="chapter"
+                     data-name="Cell Cycle and Cell Division Biology Class 11">
+
+                    <div class="chapter-info">
+
+                        <span class="chapter-number">
+                            10
+                        </span>
+
+
+                        <div>
+
+                            <h4>
+                                Cell Cycle and Cell Division
+                            </h4>
+
+                            <p>
+                                Chapter 10
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- NO RESULT -->
+
+                <div id="no-results"
+                     class="no-results">
+
+                    🔎 No chapter found.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
 
-    </body>
+
+<!-- TIMER -->
+
+<section class="timer-section">
+
+    <div class="timer-card">
+
+        <span class="section-tag">
+            FOCUS MODE
+        </span>
+
+
+        <h2>
+            Study Timer ⏱️
+        </h2>
+
+
+        <p>
+            Focus on your studies. Take regular breaks.
+        </p>
+
+
+        <div id="timer-display"
+             class="timer-display">
+
+            25:00
+
+        </div>
+
+
+        <div class="timer-status">
+
+            <span id="timer-status">
+                Ready to study
+            </span>
+
+        </div>
+
+
+        <div class="timer-buttons">
+
+            <button id="start-timer"
+                    class="timer-btn primary">
+
+                ▶ Start
+
+            </button>
+
+
+            <button id="pause-timer"
+                    class="timer-btn">
+
+                ⏸ Pause
+
+            </button>
+
+
+            <button id="reset-timer"
+                    class="timer-btn">
+
+                ↻ Reset
+
+            </button>
+
+        </div>
+
+
+        <div class="timer-presets">
+
+            <button data-time="1500">
+                25 min
+            </button>
+
+            <button data-time="300">
+                5 min
+            </button>
+
+            <button data-time="3600">
+                60 min
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- SHAYARI -->
+
+<section id="shayari"
+         class="section">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            CREATIVE CORNER
+        </span>
+
+
+        <h2>
+            Shayari ✨
+        </h2>
+
+
+        <div class="heading-line"></div>
+
+    </div>
+
+
+    <div class="shayari-card">
+
+        <div class="quote-icon">
+            “
+        </div>
+
+
+        <div class="shayari-text">
+
+            <p>
+                तुम मेरी याद में सुलगो तो बुरा लगता है,
+            </p>
+
+            <p>
+                तुम मेरे दीदार को तरसो तो बुरा लगता है,
+            </p>
+
+            <p>
+                एक तमन्ना है फकत मुझ पे मेहरबान रहो,
+            </p>
+
+            <p>
+                तुम किसी और को देखो तो बुरा लगता है,
+            </p>
+
+            <p>
+                मेरी रूह तरसती है तुम्हारी खुशबू को,
+            </p>
+
+            <p>
+                तुम कहीं और जो महको तो बुरा लगता है।
+            </p>
+
+        </div>
+
+
+        <div class="quote-bottom">
+            ✦
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- STORY -->
+
+<section id="story"
+         class="section dark-section">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            MY CREATIVE SPACE
+        </span>
+
+
+        <h2>
+            Story 📖
+        </h2>
+
+
+        <div class="heading-line"></div>
+
+    </div>
+
+
+    <div class="story-card">
+
+        <div class="story-icon">
+            📚
+        </div>
+
+
+        <h3>
+            Story
+        </h3>
+
+
+        <p>
+            Story written by me.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ABOUT -->
+
+<section id="about"
+         class="section">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            WHO I AM
+        </span>
+
+
+        <h2>
+            About Me 👨‍💻
+        </h2>
+
+
+        <div class="heading-line"></div>
+
+    </div>
+
+
+    <div class="about-container">
+
+        <div class="about-card">
+
+            <div class="about-icon">
+                🌱
+            </div>
+
+
+            <h3>
+                About Me
+            </h3>
+
+
+            <p>
+                Hello! I am learning web development.
+                I love science, art, nature and technology.
+            </p>
+
+
+            <div class="about-line"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- VIDEO -->
+
+<section class="section video-section">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            WATCH
+        </span>
+
+
+        <h2>
+            My Video 🎬
+        </h2>
+
+
+        <div class="heading-line"></div>
+
+    </div>
+
+
+    <div class="video-card">
+
+        <div class="video-wrapper">
+
+            <iframe
+                src="https://www.youtube.com/embed/R-d8yq0sREk"
+                title="YouTube video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- CONTACT -->
+
+<section id="contact"
+         class="section contact-section">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            GET IN TOUCH
+        </span>
+
+
+        <h2>
+            Contact 📩
+        </h2>
+
+
+        <div class="heading-line"></div>
+
+    </div>
+
+
+    <div class="contact-card">
+
+        <div class="contact-icon">
+            💬
+        </div>
+
+
+        <h3>
+            Contact
+        </h3>
+
+
+        <p>
+            You can contact me here.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-logo">
+        🌱 My Website
+    </div>
+
+
+    <p>
+        Science • Nature • Technology
+    </p>
+
+
+    <div class="footer-line"></div>
+
+
+    <small>
+        © 2026 My Website. All rights reserved.
+    </small>
+
+</footer>
+
+
+
+<!-- BACK TO TOP -->
+
+<button id="back-top"
+        title="Back to top">
+
+    ↑
+
+</button>
+
+
+
+<!-- TOAST -->
+
+<div id="toast"
+     class="toast">
+
+    ✓ Saved
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
 
 </html>
