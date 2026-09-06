@@ -1264,3 +1264,92 @@ body.focus-mode #neet {
 .contact-btn:hover span {
     transform: translateX(5px);
 }
+
+.video-card {
+    max-width: 850px;
+    margin: 35px auto;
+    padding: 25px;
+    border-radius: 24px;
+    background: var(--card-bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+    transition: 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.episode-badge {
+    padding: 7px 13px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.video-title h3 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/* ================= SHORTS ================= */
+
+.shorts-card {
+    max-width: 420px;
+    margin: 35px auto;
+    padding: 20px;
+    border-radius: 24px;
+    background: var(--card-bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+    transition: 0.3s ease;
+}
+
+.shorts-card:hover {
+    transform: translateY(-5px);
+}
+
+.shorts-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.shorts-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.coming-soon {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: rgba(118, 75, 162, 0.12);
+    color: #764ba2;
+}
