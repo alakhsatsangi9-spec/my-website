@@ -118,8 +118,6 @@ input {
 .menu-btn {
     display: none;
 }
-
-
 /* HERO */
 
 .hero {
@@ -1148,4 +1146,121 @@ body.focus-mode #neet {
         font-size: 60px;
     }
 
+}
+.shayari-text {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.shayari-number {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 25px;
+    border: 2px solid currentColor;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+    position: relative;
+}
+
+.shayari-number span {
+    font-size: 20px;
+    font-weight: 800;
+    transform: rotate(-45deg);
+    letter-spacing: 2px;
+}
+
+.written-by {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+.written-by {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 0;
+    padding: 10px 20px;
+
+    background: #222;
+    color: white;
+
+    border: 1px solid #222;
+    border-radius: 30px;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.shayari-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+}
+
+.shayari-line {
+    width: fit-content;
+    padding: 10px 20px;
+    margin: 0;
+
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #222;
+
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+
+    font-size: 17px;
+    font-weight: 600;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+
+    transition: 0.3s ease;
+}
+
+.shayari-line:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 13px 24px;
+
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #ffffff;
+
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+
+    border-radius: 50px;
+
+    box-shadow: 0 8px 20px rgba(118, 75, 162, 0.25);
+
+    transition: all 0.3s ease;
+}
+
+.contact-btn span {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.contact-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(118, 75, 162, 0.35);
+}
+
+.contact-btn:hover span {
+    transform: translateX(5px);
 }
