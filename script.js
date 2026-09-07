@@ -1,525 +1,11 @@
 /* =========================
-   MOBILE MENU
+   STORY READER
 ========================= */
-
-function toggleMenu() {
-
-    const nav = document.querySelector(".nav-links");
-
-    if (nav) {
-        nav.classList.toggle("active");
-    }
-
-}
 
 
 /* =========================
-   DARK MODE
+   STORY DATA
 ========================= */
-
-const themeBtn = document.getElementById("theme-btn");
-
-const savedTheme = localStorage.getItem("theme");
-
-
-if (savedTheme === "dark" && themeBtn) {
-
-    document.body.classList.add("dark");
-
-    themeBtn.textContent = "☀️";
-
-}
-
-
-if (themeBtn) {
-
-    themeBtn.addEventListener("click", function() {
-
-        document.body.classList.toggle("dark");
-
-
-        if (document.body.classList.contains("dark")) {
-
-            themeBtn.textContent = "☀️";
-
-            localStorage.setItem("theme", "dark");
-
-            showToast("🌙 Dark mode ON");
-
-        } else {
-
-            themeBtn.textContent = "🌙";
-
-            localStorage.setItem("theme", "light");
-
-            showToast("☀️ Light mode ON");
-
-        }
-
-    });
-
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-const searchInput =
-    document.getElementById("chapter-search");
-
-const clearSearch =
-    document.getElementById("clear-search");
-
-const chapters =
-    document.querySelectorAll(".chapter");
-
-const noResults =
-    document.getElementById("no-results");
-
-
-function searchChapters() {
-
-    if (!searchInput) return;
-
-    const query =
-        searchInput.value.toLowerCase().trim();
-
-    let found = false;
-
-
-    chapters.forEach(function(chapter) {
-
-        const chapterName =
-            chapter.textContent.toLowerCase();
-
-
-        if (chapterName.includes(query)) {
-
-            chapter.style.display = "flex";
-
-            found = true;
-
-        } else {
-
-            chapter.style.display = "none";
-
-        }
-
-    });
-
-
-    if (noResults) {
-
-        if (found) {
-
-            noResults.style.display = "none";
-
-        } else {
-
-            noResults.style.display = "block";
-
-        }
-
-    }
-
-}
-
-
-if (searchInput) {
-
-    searchInput.addEventListener(
-        "input",
-        searchChapters
-    );
-
-}
-
-
-if (clearSearch) {
-
-    clearSearch.addEventListener(
-        "click",
-        function() {
-
-            if (searchInput) {
-
-                searchInput.value = "";
-
-            }
-
-
-            chapters.forEach(function(chapter) {
-
-                chapter.style.display = "flex";
-
-            });
-
-
-            if (noResults) {
-
-                noResults.style.display = "none";
-
-            }
-
-
-            if (searchInput) {
-
-                searchInput.focus();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================
-   CHAPTER COMPLETE
-========================= */
-
-function completeChapter(button) {
-
-    button.classList.toggle("active");
-
-
-    const completed =
-        button.classList.contains("active");
-
-
-    localStorage.setItem(
-        "chapter1Completed",
-        completed
-    );
-
-
-    updateProgress();
-
-
-    if (completed) {
-
-        showToast("🎉 Chapter completed!");
-
-    } else {
-
-        showToast("Chapter marked incomplete");
-
-    }
-
-}
-
-
-const completeButton =
-    document.querySelector(".complete-btn");
-
-
-if (
-    completeButton &&
-    localStorage.getItem("chapter1Completed") === "true"
-) {
-
-    completeButton.classList.add("active");
-
-}
-
-
-function updateProgress() {
-
-    const completed =
-        document.querySelectorAll(
-            ".complete-btn.active"
-        ).length;
-
-
-    const total =
-        document.querySelectorAll(
-            ".complete-btn"
-        ).length;
-
-
-    let percentage = 0;
-
-
-    if (total > 0) {
-
-        percentage =
-            Math.round(
-                (completed / total) * 100
-            );
-
-    }
-
-
-    const progressFill =
-        document.getElementById("progress-fill");
-
-    const progressText =
-        document.getElementById("progress-text");
-
-
-    if (progressFill) {
-
-        progressFill.style.width =
-            percentage + "%";
-
-    }
-
-
-    if (progressText) {
-
-        progressText.textContent =
-            percentage + "%";
-
-    }
-
-}
-
-
-updateProgress();
-
-
-/* =========================
-   FAVORITE / BOOKMARK
-========================= */
-
-function toggleFavorite(button) {
-
-    button.classList.toggle("active");
-
-
-    const saved =
-        button.classList.contains("active");
-
-
-    localStorage.setItem(
-        "chapter1Favorite",
-        saved
-    );
-
-
-    if (saved) {
-
-        button.textContent = "★";
-
-        showToast("⭐ Chapter bookmarked");
-
-    } else {
-
-        button.textContent = "☆";
-
-        showToast("Bookmark removed");
-
-    }
-
-}
-
-
-const favoriteButton =
-    document.querySelector(".favorite-btn");
-
-
-if (
-    favoriteButton &&
-    localStorage.getItem("chapter1Favorite") === "true"
-) {
-
-    favoriteButton.classList.add("active");
-
-    favoriteButton.textContent = "★";
-
-}
-
-
-/* =========================
-   SCROLL PROGRESS
-========================= */
-
-window.addEventListener(
-    "scroll",
-    function() {
-
-        const scrollTop =
-            document.documentElement.scrollTop;
-
-
-        const height =
-            document.documentElement.scrollHeight
-            -
-            document.documentElement.clientHeight;
-
-
-        let percentage = 0;
-
-
-        if (height > 0) {
-
-            percentage =
-                (scrollTop / height) * 100;
-
-        }
-
-
-        const scrollProgress =
-            document.getElementById("scroll-progress");
-
-
-        if (scrollProgress) {
-
-            scrollProgress.style.width =
-                percentage + "%";
-
-        }
-
-    }
-);
-
-
-/* =========================
-   BACK TO TOP
-========================= */
-
-const backTop =
-    document.getElementById("back-top");
-
-
-window.addEventListener(
-    "scroll",
-    function() {
-
-        if (!backTop) return;
-
-
-        if (window.scrollY > 500) {
-
-            backTop.style.display = "block";
-
-        } else {
-
-            backTop.style.display = "none";
-
-        }
-
-    }
-);
-
-
-if (backTop) {
-
-    backTop.addEventListener(
-        "click",
-        function() {
-
-            window.scrollTo({
-
-                top: 0,
-
-                behavior: "smooth"
-
-            });
-
-        }
-    );
-
-}
-
-
-/* =========================
-   NAVBAR EFFECT
-========================= */
-
-window.addEventListener(
-    "scroll",
-    function() {
-
-        const navbar =
-            document.querySelector(".navbar");
-
-
-        if (!navbar) return;
-
-
-        if (window.scrollY > 50) {
-
-            navbar.classList.add("scrolled");
-
-        } else {
-
-            navbar.classList.remove("scrolled");
-
-        }
-
-    }
-);
-
-
-/* =========================
-   TOAST
-========================= */
-
-let toastTimer;
-
-
-function showToast(message) {
-
-    const toast =
-        document.getElementById("toast");
-
-
-    if (!toast) return;
-
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-
-    clearTimeout(toastTimer);
-
-
-    toastTimer =
-        setTimeout(
-            function() {
-
-                toast.classList.remove("show");
-
-            },
-            2200
-        );
-
-}
-
-
-/* =========================
-   KEYBOARD SHORTCUTS
-   CTRL + K = SEARCH
-========================= */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            (event.ctrlKey || event.metaKey)
-            &&
-            event.key.toLowerCase() === "k"
-        ) {
-
-            event.preventDefault();
-
-
-            if (searchInput) {
-
-                searchInput.focus();
-
-            }
-
-        }
-
-    }
-);
-
-/* ================= STORY READER ================= */
 
 const storyParts = {
 
@@ -752,31 +238,53 @@ const storyParts = {
 };
 
 
-/* ================= STORY VARIABLES ================= */
+/* =========================
+   STORY VARIABLES
+========================= */
 
 let currentStoryPart = 1;
 
+const TOTAL_STORY_PARTS = 3;
 
-/* ================= OPEN STORY PART ================= */
+
+/* =========================
+   OPEN STORY PART
+========================= */
 
 function openStoryPart(part) {
+
+    if (part < 1 || part > TOTAL_STORY_PARTS) {
+        return;
+    }
 
     currentStoryPart = part;
 
     const storyReader =
         document.getElementById("storyReader");
 
-    if (!storyReader) return;
+    if (!storyReader) {
+        return;
+    }
 
     storyReader.classList.add("active");
 
     showStoryPart(part);
 
-    setTimeout(function() {
+    /*
+       Reader ko Story ke reader position par le jao.
+       Header/navbar ke neeche thoda gap bhi rahega.
+    */
 
-        storyReader.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+    setTimeout(function () {
+
+        const readerPosition =
+            storyReader.getBoundingClientRect().top +
+            window.scrollY -
+            80;
+
+        window.scrollTo({
+            top: readerPosition,
+            behavior: "smooth"
         });
 
     }, 100);
@@ -784,7 +292,9 @@ function openStoryPart(part) {
 }
 
 
-/* ================= SHOW STORY PART ================= */
+/* =========================
+   SHOW STORY PART
+========================= */
 
 function showStoryPart(part) {
 
@@ -803,143 +313,194 @@ function showStoryPart(part) {
     const pageNumber =
         document.querySelector(".page-number");
 
+    const previousButton =
+        document.getElementById("prevStoryBtn");
 
-    storyText.innerHTML =
-        storyParts[part];
-
-
-    storyPartTitle.textContent =
-        "मेरा पहला प्यार — Part " + part;
-
-
-    currentPart.textContent =
-        "PART " + part;
-
-
-    partIndicator.textContent =
-        part + " / 3";
-
-
-    pageNumber.textContent =
-        String(part).padStart(2, "0");
-
-
-    /* PREVIOUS */
-
-    document
-        .getElementById("prevStoryBtn")
-        .disabled = part === 1;
-
-
-    /* NEXT */
-
-    document
-        .getElementById("nextStoryBtn")
-        .disabled = part === 3;
-
-
-    /* PAGE TURN */
+    const nextButton =
+        document.getElementById("nextStoryBtn");
 
     const page =
         document.getElementById("storyPage");
 
 
-    page.classList.remove("page-turn");
+    if (!storyText || !storyPartTitle) {
+        return;
+    }
 
-    void page.offsetWidth;
 
-    page.classList.add("page-turn");
+    /* STORY TEXT */
+
+    if (storyParts[part]) {
+
+        storyText.innerHTML =
+            storyParts[part];
+
+    }
+
+
+    /* TITLE */
+
+    if (storyPartTitle) {
+
+        storyPartTitle.textContent =
+            "मेरा पहला प्यार — Part " + part;
+
+    }
+
+
+    /* TOP LABEL */
+
+    if (currentPart) {
+
+        currentPart.textContent =
+            "PART " + part;
+
+    }
+
+
+    /* PART INDICATOR */
+
+    if (partIndicator) {
+
+        partIndicator.textContent =
+            part + " / " + TOTAL_STORY_PARTS;
+
+    }
+
+
+    /* PAGE NUMBER */
+
+    if (pageNumber) {
+
+        pageNumber.textContent =
+            String(part).padStart(2, "0");
+
+    }
+
+
+    /* PREVIOUS BUTTON */
+
+    if (previousButton) {
+
+        previousButton.disabled =
+            part === 1;
+
+    }
+
+
+    /* NEXT BUTTON */
+
+    if (nextButton) {
+
+        nextButton.disabled =
+            part === TOTAL_STORY_PARTS;
+
+    }
+
+
+    /* PAGE TURN ANIMATION */
+
+    if (page) {
+
+        page.classList.remove("page-turn");
+
+        void page.offsetWidth;
+
+        page.classList.add("page-turn");
+
+    }
 
 }
 
 
-/* ================= NEXT ================= */
+/* =========================
+   NEXT STORY PART
+========================= */
 
 function nextStoryPart() {
 
-    if (currentStoryPart < 3) {
-
-        currentStoryPart++;
-
-        showStoryPart(currentStoryPart);
-
-
-        /* वापस STORY पर जाए */
-
-        const storyReader =
-            document.getElementById("storyReader");
-
-
-        if (storyReader) {
-
-            setTimeout(function() {
-
-                storyReader.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }, 100);
-
-        }
-
+    if (currentStoryPart >= TOTAL_STORY_PARTS) {
+        return;
     }
+
+    currentStoryPart++;
+
+    showStoryPart(currentStoryPart);
+
+    scrollToStoryReader();
 
 }
 
 
-/* ================= PREVIOUS ================= */
+/* =========================
+   PREVIOUS STORY PART
+========================= */
 
 function previousStoryPart() {
 
-    if (currentStoryPart > 1) {
-
-        currentStoryPart--;
-
-        showStoryPart(currentStoryPart);
-
-
-        /* वापस STORY पर जाए */
-
-        const storyReader =
-            document.getElementById("storyReader");
-
-
-        if (storyReader) {
-
-            setTimeout(function() {
-
-                storyReader.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }, 100);
-
-        }
-
+    if (currentStoryPart <= 1) {
+        return;
     }
+
+    currentStoryPart--;
+
+    showStoryPart(currentStoryPart);
+
+    scrollToStoryReader();
 
 }
 
 
-/* ================= CLOSE ================= */
+/* =========================
+   SCROLL TO STORY READER
+========================= */
+
+function scrollToStoryReader() {
+
+    const storyReader =
+        document.getElementById("storyReader");
+
+    if (!storyReader) {
+        return;
+    }
+
+    setTimeout(function () {
+
+        const readerPosition =
+            storyReader.getBoundingClientRect().top +
+            window.scrollY -
+            80;
+
+        window.scrollTo({
+            top: readerPosition,
+            behavior: "smooth"
+        });
+
+    }, 100);
+
+}
+
+
+/* =========================
+   CLOSE STORY
+========================= */
 
 function closeStory() {
 
     const storyReader =
         document.getElementById("storyReader");
 
-
-    if (storyReader) {
-
-        storyReader.classList.remove("active");
-
+    if (!storyReader) {
+        return;
     }
+
+    storyReader.classList.remove("active");
 
 }
 
 
-/* ================= JAVASCRIPT TEST ================= */
+/* =========================
+   STORY JAVASCRIPT TEST
+========================= */
 
 console.log("STORY JAVASCRIPT LOADED");
