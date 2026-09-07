@@ -1,3 +1,507 @@
+
+
+/* =========================
+MOBILE MENU
+========================= */
+
+function toggleMenu() {
+
+const nav = document.querySelector(".nav-links");
+
+if (nav) {
+    nav.classList.toggle("active");
+}
+
+}
+
+/* =========================
+DARK MODE
+========================= */
+
+const themeBtn = document.getElementById("theme-btn");
+
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark" && themeBtn) {
+
+document.body.classList.add("dark");
+
+themeBtn.textContent = "☀️";
+
+}
+
+if (themeBtn) {
+
+themeBtn.addEventListener("click", function() {
+
+    document.body.classList.toggle("dark");
+
+
+    if (document.body.classList.contains("dark")) {
+
+        themeBtn.textContent = "☀️";
+
+        localStorage.setItem("theme", "dark");
+
+        showToast("🌙 Dark mode ON");
+
+    } else {
+
+        themeBtn.textContent = "🌙";
+
+        localStorage.setItem("theme", "light");
+
+        showToast("☀️ Light mode ON");
+
+    }
+
+});
+
+}
+
+/* =========================
+SEARCH
+========================= */
+
+const searchInput =
+document.getElementById("chapter-search");
+
+const clearSearch =
+document.getElementById("clear-search");
+
+const chapters =
+document.querySelectorAll(".chapter");
+
+const noResults =
+document.getElementById("no-results");
+
+function searchChapters() {
+
+if (!searchInput) return;
+
+const query =
+    searchInput.value.toLowerCase().trim();
+
+let found = false;
+
+
+chapters.forEach(function(chapter) {
+
+    const chapterName =
+        chapter.textContent.toLowerCase();
+
+
+    if (chapterName.includes(query)) {
+
+        chapter.style.display = "flex";
+
+        found = true;
+
+    } else {
+
+        chapter.style.display = "none";
+
+    }
+
+});
+
+
+if (noResults) {
+
+    if (found) {
+
+        noResults.style.display = "none";
+
+    } else {
+
+        noResults.style.display = "block";
+
+    }
+
+}
+
+}
+
+if (searchInput) {
+
+searchInput.addEventListener(
+    "input",
+    searchChapters
+);
+
+}
+
+if (clearSearch) {
+
+clearSearch.addEventListener(
+    "click",
+    function() {
+
+        if (searchInput) {
+
+            searchInput.value = "";
+
+        }
+
+
+        chapters.forEach(function(chapter) {
+
+            chapter.style.display = "flex";
+
+        });
+
+
+        if (noResults) {
+
+            noResults.style.display = "none";
+
+        }
+
+
+        if (searchInput) {
+
+            searchInput.focus();
+
+        }
+
+    }
+);
+
+}
+
+/* =========================
+CHAPTER COMPLETE
+========================= */
+
+function completeChapter(button) {
+
+button.classList.toggle("active");
+
+
+const completed =
+    button.classList.contains("active");
+
+
+localStorage.setItem(
+    "chapter1Completed",
+    completed
+);
+
+
+updateProgress();
+
+
+if (completed) {
+
+    showToast("🎉 Chapter completed!");
+
+} else {
+
+    showToast("Chapter marked incomplete");
+
+}
+
+}
+
+const completeButton =
+document.querySelector(".complete-btn");
+
+if (
+completeButton &&
+localStorage.getItem("chapter1Completed") === "true"
+) {
+
+completeButton.classList.add("active");
+
+}
+
+function updateProgress() {
+
+const completed =
+    document.querySelectorAll(
+        ".complete-btn.active"
+    ).length;
+
+
+const total =
+    document.querySelectorAll(
+        ".complete-btn"
+    ).length;
+
+
+let percentage = 0;
+
+
+if (total > 0) {
+
+    percentage =
+        Math.round(
+            (completed / total) * 100
+        );
+
+}
+
+
+const progressFill =
+    document.getElementById("progress-fill");
+
+const progressText =
+    document.getElementById("progress-text");
+
+
+if (progressFill) {
+
+    progressFill.style.width =
+        percentage + "%";
+
+}
+
+
+if (progressText) {
+
+    progressText.textContent =
+        percentage + "%";
+
+}
+
+}
+
+updateProgress();
+
+/* =========================
+FAVORITE / BOOKMARK
+========================= */
+
+function toggleFavorite(button) {
+
+button.classList.toggle("active");
+
+
+const saved =
+    button.classList.contains("active");
+
+
+localStorage.setItem(
+    "chapter1Favorite",
+    saved
+);
+
+
+if (saved) {
+
+    button.textContent = "★";
+
+    showToast("⭐ Chapter bookmarked");
+
+} else {
+
+    button.textContent = "☆";
+
+    showToast("Bookmark removed");
+
+}
+
+}
+
+const favoriteButton =
+document.querySelector(".favorite-btn");
+
+if (
+favoriteButton &&
+localStorage.getItem("chapter1Favorite") === "true"
+) {
+
+favoriteButton.classList.add("active");
+
+favoriteButton.textContent = "★";
+
+}
+
+/* =========================
+SCROLL PROGRESS
+========================= */
+
+window.addEventListener(
+"scroll",
+function() {
+
+    const scrollTop =
+        document.documentElement.scrollTop;
+
+
+    const height =
+        document.documentElement.scrollHeight
+        -
+        document.documentElement.clientHeight;
+
+
+    let percentage = 0;
+
+
+    if (height > 0) {
+
+        percentage =
+            (scrollTop / height) * 100;
+
+    }
+
+
+    const scrollProgress =
+        document.getElementById("scroll-progress");
+
+
+    if (scrollProgress) {
+
+        scrollProgress.style.width =
+            percentage + "%";
+
+    }
+
+}
+
+);
+
+/* =========================
+BACK TO TOP
+========================= */
+
+const backTop =
+document.getElementById("back-top");
+
+window.addEventListener(
+"scroll",
+function() {
+
+    if (!backTop) return;
+
+
+    if (window.scrollY > 500) {
+
+        backTop.style.display = "block";
+
+    } else {
+
+        backTop.style.display = "none";
+
+    }
+
+}
+
+);
+
+if (backTop) {
+
+backTop.addEventListener(
+    "click",
+    function() {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+);
+
+}
+
+/* =========================
+NAVBAR EFFECT
+========================= */
+
+window.addEventListener(
+"scroll",
+function() {
+
+    const navbar =
+        document.querySelector(".navbar");
+
+
+    if (!navbar) return;
+
+
+    if (window.scrollY > 50) {
+
+        navbar.classList.add("scrolled");
+
+    } else {
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+}
+
+);
+
+/* =========================
+TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message) {
+
+const toast =
+    document.getElementById("toast");
+
+
+if (!toast) return;
+
+
+toast.textContent = message;
+
+toast.classList.add("show");
+
+
+clearTimeout(toastTimer);
+
+
+toastTimer =
+    setTimeout(
+        function() {
+
+            toast.classList.remove("show");
+
+        },
+        2200
+    );
+
+}
+
+/* =========================
+KEYBOARD SHORTCUTS
+CTRL + K = SEARCH
+========================= */
+
+document.addEventListener(
+"keydown",
+function(event) {
+
+    if (
+        (event.ctrlKey || event.metaKey)
+        &&
+        event.key.toLowerCase() === "k"
+    ) {
+
+        event.preventDefault();
+
+
+        if (searchInput) {
+
+            searchInput.focus();
+
+        }
+
+    }
+
+}
+
+);
+
 /* =========================
    STORY READER
 ========================= */
