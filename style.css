@@ -1430,3 +1430,322 @@ body.focus-mode #neet {
     opacity: 0.7;
 }
 
+/* ================= STORY DESIGN ================= */
+
+.story-section {
+    padding-bottom: 80px;
+}
+
+
+/* STORY CARD */
+
+.story-card {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 35px;
+    border-radius: 28px;
+    background: var(--card-bg);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+
+/* STORY HEADER */
+
+.story-icon {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.story-header h3 {
+    margin: 5px 0;
+    font-size: 30px;
+}
+
+.story-header p {
+    margin: 8px 0 25px;
+    opacity: 0.65;
+    font-size: 14px;
+}
+
+
+/* PART BUTTONS */
+
+.story-parts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.story-parts button {
+    border: 1px solid rgba(118, 75, 162, 0.25);
+    background: transparent;
+    border-radius: 18px;
+    padding: 18px 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-family: inherit;
+}
+
+.story-parts button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.story-parts span {
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 7px;
+}
+
+.story-parts strong {
+    display: block;
+    font-size: 16px;
+}
+
+.story-parts small {
+    display: block;
+    margin-top: 5px;
+    opacity: 0.6;
+}
+
+
+/* STORY READER */
+
+.story-reader {
+    display: none;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.story-reader.active {
+    display: block;
+}
+
+
+/* BOOK */
+
+.book {
+    position: relative;
+    padding: 30px;
+    border-radius: 12px 25px 25px 12px;
+    background: #f4ead5;
+    box-shadow:
+        -10px 10px 0 rgba(0, 0, 0, 0.08),
+        0 20px 45px rgba(0, 0, 0, 0.18);
+}
+
+
+/* BOOK TOP */
+
+.book-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.close-story {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.08);
+    font-size: 18px;
+}
+
+
+/* PAGE */
+
+.book-page {
+    position: relative;
+    min-height: 500px;
+    padding: 50px 55px;
+    background: #fffdf5;
+    border-radius: 5px 15px 15px 5px;
+
+    box-shadow:
+        inset 8px 0 15px rgba(0, 0, 0, 0.04),
+        0 3px 10px rgba(0, 0, 0, 0.08);
+
+    transform-origin: left center;
+
+    overflow: hidden;
+}
+
+
+/* PAGE LINES */
+
+.book-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(120, 120, 120, 0.10) 1px,
+            transparent 1px
+        );
+
+    background-size: 100% 32px;
+
+    pointer-events: none;
+}
+
+
+/* PAGE CONTENT */
+
+.book-page > * {
+    position: relative;
+    z-index: 1;
+}
+
+.page-number {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 13px;
+    opacity: 0.5;
+}
+
+
+#storyPartTitle {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 25px;
+}
+
+
+/* STORY TEXT */
+
+.story-text {
+    text-align: left;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 2;
+    color: #29251f;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+
+/* STORY PARAGRAPHS */
+
+.story-text p {
+    margin: 0 0 20px;
+}
+
+
+/* WRITTEN BY */
+
+.story-text + .written-by {
+    margin-top: 35px;
+}
+
+
+/* PAGE TURN */
+
+.page-turn {
+    animation: pageTurn 0.6s ease;
+}
+
+@keyframes pageTurn {
+
+    0% {
+        transform: perspective(1200px)
+                   rotateY(0deg);
+        opacity: 1;
+    }
+
+    45% {
+        transform: perspective(1200px)
+                   rotateY(-18deg);
+        opacity: 0.75;
+    }
+
+    100% {
+        transform: perspective(1200px)
+                   rotateY(0deg);
+        opacity: 1;
+    }
+
+}
+
+
+/* NAVIGATION */
+
+.book-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.book-navigation button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2
+    );
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.book-navigation button:hover:not(:disabled) {
+    transform: translateY(-3px);
+}
+
+.book-navigation button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+#partIndicator {
+    font-weight: 800;
+    opacity: 0.7;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .story-card {
+        padding: 22px;
+    }
+
+    .story-parts {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .book {
+        padding: 15px;
+    }
+
+    .book-page {
+        min-height: 500px;
+        padding: 45px 25px;
+    }
+
+    #storyPartTitle {
+        font-size: 21px;
+    }
+
+    .story-text {
+        font-size: 16px;
+        line-height: 1.9;
+    }
+
+}
+
