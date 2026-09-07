@@ -6,10 +6,11 @@ function toggleMenu() {
 
     const nav = document.querySelector(".nav-links");
 
-    nav.classList.toggle("active");
+    if (nav) {
+        nav.classList.toggle("active");
+    }
 
 }
-
 
 
 /* =========================
@@ -21,7 +22,7 @@ const themeBtn = document.getElementById("theme-btn");
 const savedTheme = localStorage.getItem("theme");
 
 
-if (savedTheme === "dark") {
+if (savedTheme === "dark" && themeBtn) {
 
     document.body.classList.add("dark");
 
@@ -30,57 +31,34 @@ if (savedTheme === "dark") {
 }
 
 
-themeBtn.addEventListener("click", function() {
+if (themeBtn) {
 
-    document.body.classList.toggle("dark");
+    themeBtn.addEventListener("click", function() {
 
-
-    if (document.body.classList.contains("dark")) {
-
-        themeBtn.textContent = "☀️";
-
-        localStorage.setItem("theme", "dark");
-
-        showToast("🌙 Dark mode ON");
-
-    } else {
-
-        themeBtn.textContent = "🌙";
-
-        localStorage.setItem("theme", "light");
-
-        showToast("☀️ Light mode ON");
-
-    }
-
-});
+        document.body.classList.toggle("dark");
 
 
+        if (document.body.classList.contains("dark")) {
 
-/* =========================
-   FOCUS MODE
-========================= */
+            themeBtn.textContent = "☀️";
 
-const focusBtn = document.getElementById("focus-btn");
+            localStorage.setItem("theme", "dark");
 
+            showToast("🌙 Dark mode ON");
 
-focusBtn.addEventListener("click", function() {
+        } else {
 
-    document.body.classList.toggle("focus-mode");
+            themeBtn.textContent = "🌙";
 
+            localStorage.setItem("theme", "light");
 
-    if (document.body.classList.contains("focus-mode")) {
+            showToast("☀️ Light mode ON");
 
-        showToast("🎯 Focus mode ON");
+        }
 
-    } else {
+    });
 
-        showToast("🎯 Focus mode OFF");
-
-    }
-
-});
-
+}
 
 
 /* =========================
@@ -101,6 +79,8 @@ const noResults =
 
 
 function searchChapters() {
+
+    if (!searchInput) return;
 
     const query =
         searchInput.value.toLowerCase().trim();
@@ -129,42 +109,70 @@ function searchChapters() {
     });
 
 
-    if (found) {
+    if (noResults) {
 
-        noResults.style.display = "none";
+        if (found) {
 
-    } else {
+            noResults.style.display = "none";
 
-        noResults.style.display = "block";
+        } else {
+
+            noResults.style.display = "block";
+
+        }
 
     }
 
 }
 
 
-searchInput.addEventListener(
-    "input",
-    searchChapters
-);
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        searchChapters
+    );
+
+}
 
 
+if (clearSearch) {
 
-clearSearch.addEventListener("click", function() {
+    clearSearch.addEventListener(
+        "click",
+        function() {
 
-    searchInput.value = "";
+            if (searchInput) {
 
-    chapters.forEach(function(chapter) {
+                searchInput.value = "";
 
-        chapter.style.display = "flex";
+            }
 
-    });
 
-    noResults.style.display = "none";
+            chapters.forEach(function(chapter) {
 
-    searchInput.focus();
+                chapter.style.display = "flex";
 
-});
+            });
 
+
+            if (noResults) {
+
+                noResults.style.display = "none";
+
+            }
+
+
+            if (searchInput) {
+
+                searchInput.focus();
+
+            }
+
+        }
+    );
+
+}
 
 
 /* =========================
@@ -207,8 +215,8 @@ const completeButton =
 
 
 if (
-    localStorage.getItem("chapter1Completed")
-    === "true"
+    completeButton &&
+    localStorage.getItem("chapter1Completed") === "true"
 ) {
 
     completeButton.classList.add("active");
@@ -243,22 +251,32 @@ function updateProgress() {
     }
 
 
-    document.getElementById(
-        "progress-fill"
-    ).style.width =
-        percentage + "%";
+    const progressFill =
+        document.getElementById("progress-fill");
+
+    const progressText =
+        document.getElementById("progress-text");
 
 
-    document.getElementById(
-        "progress-text"
-    ).textContent =
-        percentage + "%";
+    if (progressFill) {
+
+        progressFill.style.width =
+            percentage + "%";
+
+    }
+
+
+    if (progressText) {
+
+        progressText.textContent =
+            percentage + "%";
+
+    }
 
 }
 
 
 updateProgress();
-
 
 
 /* =========================
@@ -302,8 +320,8 @@ const favoriteButton =
 
 
 if (
-    localStorage.getItem("chapter1Favorite")
-    === "true"
+    favoriteButton &&
+    localStorage.getItem("chapter1Favorite") === "true"
 ) {
 
     favoriteButton.classList.add("active");
@@ -311,183 +329,6 @@ if (
     favoriteButton.textContent = "★";
 
 }
-
-
-
-/* =========================
-   STUDY TIMER
-========================= */
-
-let timeLeft = 25 * 60;
-
-let timer = null;
-
-let running = false;
-
-
-const timerDisplay =
-    document.getElementById("timer-display");
-
-const timerStatus =
-    document.getElementById("timer-status");
-
-
-function updateTimer() {
-
-    const minutes =
-        Math.floor(timeLeft / 60);
-
-
-    const seconds =
-        timeLeft % 60;
-
-
-    timerDisplay.textContent =
-        String(minutes).padStart(2, "0")
-        + ":"
-        + String(seconds).padStart(2, "0");
-
-}
-
-
-
-function startTimer() {
-
-    if (running) return;
-
-
-    running = true;
-
-
-    timerStatus.textContent =
-        "🔥 Focus — keep studying";
-
-
-    timer =
-        setInterval(function() {
-
-
-            if (timeLeft > 0) {
-
-                timeLeft--;
-
-                updateTimer();
-
-            } else {
-
-                clearInterval(timer);
-
-                running = false;
-
-
-                timerStatus.textContent =
-                    "🎉 Time's up! Take a break.";
-
-
-                showToast(
-                    "⏰ Timer finished!"
-                );
-
-
-                alert(
-                    "⏰ Study timer finished! Take a short break."
-                );
-
-            }
-
-        }, 1000);
-
-}
-
-
-
-function pauseTimer() {
-
-    clearInterval(timer);
-
-    running = false;
-
-    timerStatus.textContent =
-        "⏸ Timer paused";
-
-}
-
-
-
-function resetTimer() {
-
-    clearInterval(timer);
-
-    running = false;
-
-    timeLeft = 25 * 60;
-
-    updateTimer();
-
-    timerStatus.textContent =
-        "Ready to study";
-
-}
-
-
-
-document.getElementById(
-    "start-timer"
-).addEventListener(
-    "click",
-    startTimer
-);
-
-
-document.getElementById(
-    "pause-timer"
-).addEventListener(
-    "click",
-    pauseTimer
-);
-
-
-document.getElementById(
-    "reset-timer"
-).addEventListener(
-    "click",
-    resetTimer
-);
-
-
-
-document.querySelectorAll(
-    ".timer-presets button"
-).forEach(function(button) {
-
-
-    button.addEventListener(
-        "click",
-        function() {
-
-            clearInterval(timer);
-
-            running = false;
-
-
-            timeLeft =
-                Number(button.dataset.time);
-
-
-            updateTimer();
-
-
-            timerStatus.textContent =
-                "Ready to study";
-
-        }
-    );
-
-});
-
-
-updateTimer();
-
 
 
 /* =========================
@@ -519,14 +360,19 @@ window.addEventListener(
         }
 
 
-        document.getElementById(
-            "scroll-progress"
-        ).style.width =
-            percentage + "%";
+        const scrollProgress =
+            document.getElementById("scroll-progress");
+
+
+        if (scrollProgress) {
+
+            scrollProgress.style.width =
+                percentage + "%";
+
+        }
 
     }
 );
-
 
 
 /* =========================
@@ -540,6 +386,9 @@ const backTop =
 window.addEventListener(
     "scroll",
     function() {
+
+        if (!backTop) return;
+
 
         if (window.scrollY > 500) {
 
@@ -555,21 +404,24 @@ window.addEventListener(
 );
 
 
-backTop.addEventListener(
-    "click",
-    function() {
+if (backTop) {
 
-        window.scrollTo({
+    backTop.addEventListener(
+        "click",
+        function() {
 
-            top: 0,
+            window.scrollTo({
 
-            behavior: "smooth"
+                top: 0,
 
-        });
+                behavior: "smooth"
 
-    }
-);
+            });
 
+        }
+    );
+
+}
 
 
 /* =========================
@@ -582,6 +434,9 @@ window.addEventListener(
 
         const navbar =
             document.querySelector(".navbar");
+
+
+        if (!navbar) return;
 
 
         if (window.scrollY > 50) {
@@ -598,7 +453,6 @@ window.addEventListener(
 );
 
 
-
 /* =========================
    TOAST
 ========================= */
@@ -612,6 +466,9 @@ function showToast(message) {
         document.getElementById("toast");
 
 
+    if (!toast) return;
+
+
     toast.textContent = message;
 
     toast.classList.add("show");
@@ -621,26 +478,26 @@ function showToast(message) {
 
 
     toastTimer =
-        setTimeout(function() {
+        setTimeout(
+            function() {
 
-            toast.classList.remove("show");
+                toast.classList.remove("show");
 
-        }, 2200);
+            },
+            2200
+        );
 
 }
 
 
-
 /* =========================
    KEYBOARD SHORTCUTS
+   CTRL + K = SEARCH
 ========================= */
 
 document.addEventListener(
     "keydown",
     function(event) {
-
-
-        /* CTRL + K = SEARCH */
 
         if (
             (event.ctrlKey || event.metaKey)
@@ -650,31 +507,10 @@ document.addEventListener(
 
             event.preventDefault();
 
-            searchInput.focus();
 
-        }
+            if (searchInput) {
 
-
-        /* SPACE = TIMER */
-
-        if (
-            event.code === "Space"
-            &&
-            document.activeElement.tagName !== "INPUT"
-            &&
-            document.activeElement.tagName !== "TEXTAREA"
-        ) {
-
-            event.preventDefault();
-
-
-            if (running) {
-
-                pauseTimer();
-
-            } else {
-
-                startTimer();
+                searchInput.focus();
 
             }
 
@@ -682,7 +518,6 @@ document.addEventListener(
 
     }
 );
-
 
 /* ================= STORY READER ================= */
 
@@ -928,18 +763,23 @@ function openStoryPart(part) {
 
     currentStoryPart = part;
 
-    document
-        .getElementById("storyReader")
-        .classList.add("active");
+    const storyReader =
+        document.getElementById("storyReader");
+
+    if (!storyReader) return;
+
+    storyReader.classList.add("active");
 
     showStoryPart(part);
 
-    document
-        .getElementById("storyReader")
-        .scrollIntoView({
+    setTimeout(function() {
+
+        storyReader.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
+
+    }, 100);
 
 }
 
@@ -986,20 +826,23 @@ function showStoryPart(part) {
 
     /* PREVIOUS */
 
-    document.getElementById("prevStoryBtn").disabled =
-        part === 1;
+    document
+        .getElementById("prevStoryBtn")
+        .disabled = part === 1;
 
 
     /* NEXT */
 
-    document.getElementById("nextStoryBtn").disabled =
-        part === 3;
+    document
+        .getElementById("nextStoryBtn")
+        .disabled = part === 3;
 
 
     /* PAGE TURN */
 
     const page =
         document.getElementById("storyPage");
+
 
     page.classList.remove("page-turn");
 
@@ -1020,6 +863,26 @@ function nextStoryPart() {
 
         showStoryPart(currentStoryPart);
 
+
+        /* वापस STORY पर जाए */
+
+        const storyReader =
+            document.getElementById("storyReader");
+
+
+        if (storyReader) {
+
+            setTimeout(function() {
+
+                storyReader.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }, 100);
+
+        }
+
     }
 
 }
@@ -1035,6 +898,26 @@ function previousStoryPart() {
 
         showStoryPart(currentStoryPart);
 
+
+        /* वापस STORY पर जाए */
+
+        const storyReader =
+            document.getElementById("storyReader");
+
+
+        if (storyReader) {
+
+            setTimeout(function() {
+
+                storyReader.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }, 100);
+
+        }
+
     }
 
 }
@@ -1044,8 +927,19 @@ function previousStoryPart() {
 
 function closeStory() {
 
-    document
-        .getElementById("storyReader")
-        .classList.remove("active");
+    const storyReader =
+        document.getElementById("storyReader");
+
+
+    if (storyReader) {
+
+        storyReader.classList.remove("active");
+
+    }
 
 }
+
+
+/* ================= JAVASCRIPT TEST ================= */
+
+console.log("STORY JAVASCRIPT LOADED");
